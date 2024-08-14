@@ -207,6 +207,8 @@ extension String: ABIConvertible {
     public init?(hexString: String) {
         if let data = Data(hexString: hexString) {
             self.init(data: data, encoding: .utf8)
+        } else if hexString == String(repeating: "0", count: 64) {
+            self = ""
         } else {
             return nil
         }

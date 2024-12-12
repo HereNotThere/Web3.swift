@@ -152,6 +152,14 @@ public struct SolidityPayableInvocation: SolidityInvocation {
         self.parameters = zip(parameters, method.inputs).map { SolidityWrappedValue(value: $0, type: $1.type) }
         self.handler = handler
     }
+  
+    public init(method: SolidityFunction,
+                wrappedParameters: [SolidityWrappedValue],
+                handler: SolidityFunctionHandler) {
+        self.method = method
+        self.parameters = wrappedParameters
+        self.handler = handler
+    }
 
     public func createTransaction(
         nonce: EthereumQuantity? = nil,
